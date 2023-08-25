@@ -11,6 +11,8 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 app.MapDefaultControllerRoute();
 /*This line maps the default controller route for the application. It sets up a route that matches URLs to controller actions based on 
  * conventional patterns. For example, a URL like "/Item/List" would map to the List action in the ItemController.
