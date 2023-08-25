@@ -23,7 +23,7 @@ namespace MyShop.Controllers
             var item3 = new Item()
             {
                 ItemId = 3,
-                Name = "Wok",
+                Name = "Tacos",
                 Price = 50
             };
 
