@@ -1,10 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyShop.Models;
+using MyShop.ViewModels;
 
 namespace MyShop.Controllers;
 
 public class ItemController : Controller
 {
+    public IActionResult Table()
+    {
+        var items = GetItems();
+        var itemListViewModel = new ItemListViewModel(items, "Table");
+        return View(itemListViewModel)
+    }
+
+    public IActionResult Grid()
+    {
+        var items = GetItems();
+        var itemListViewModel = new ItemListViewModel(items, "Grid");
+        return View(itemListViewModel);
+    }
+    /*
     public IActionResult Table()
     {
         var items = GetItems();
@@ -18,7 +33,7 @@ public class ItemController : Controller
         ViewBag.CurrentViewName = "Grid";
         return View(items);
     }
-
+    */
     public List<Item> GetItems()
     {
         var items = new List<Item>();
