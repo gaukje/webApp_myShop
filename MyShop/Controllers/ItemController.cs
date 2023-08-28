@@ -10,7 +10,7 @@ public class ItemController : Controller
     {
         var items = GetItems();
         var itemListViewModel = new ItemListViewModel(items, "Table");
-        return View(itemListViewModel)
+        return View(itemListViewModel);
     }
 
     public IActionResult Grid()
