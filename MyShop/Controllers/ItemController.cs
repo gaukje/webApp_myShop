@@ -19,6 +19,15 @@ public class ItemController : Controller
         var itemListViewModel = new ItemListViewModel(items, "Grid");
         return View(itemListViewModel);
     }
+
+    public IActionResult Details(int id)
+    {
+        var items = GetItems();
+        var item = items.FirstOrDefault(i => i.ItemId == id);
+        if (item == null) return NotFound();
+        return View(item);
+    }
+
     /*
     public IActionResult Table()
     {
