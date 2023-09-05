@@ -16,41 +16,26 @@ public class ItemController : Controller
 
     public IActionResult Table()
     {
-        var items = GetItems();
+        List<Item> items = _itemDbContext.Items.ToList(); //ToList() converts the results queried from the database into a list.
         var itemListViewModel = new ItemListViewModel(items, "Table");
         return View(itemListViewModel);
     }
 
     public IActionResult Grid()
     {
-        var items = GetItems();
+        List<Item> items = _itemDbContext.Items.ToList();
         var itemListViewModel = new ItemListViewModel(items, "Grid");
         return View(itemListViewModel);
     }
 
     public IActionResult Details(int id)
     {
-        var items = GetItems();
+        List<Item> items = _itemDbContext.Items.ToList();
         var item = items.FirstOrDefault(i => i.ItemId == id);
         if (item == null) return NotFound();
         return View(item);
     }
 
-    /*
-    public IActionResult Table()
-    {
-        var items = GetItems();
-        ViewBag.CurrentViewName = "Table";
-        return View(items);
-    }
-
-    public IActionResult Grid()
-    {
-        var items = GetItems();
-        ViewBag.CurrentViewName = "Grid";
-        return View(items);
-    }
-    */
     public List<Item> GetItems()
     {
         var items = new List<Item>();
