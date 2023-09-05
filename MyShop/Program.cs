@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MyShop.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -8,6 +11,12 @@ builder.Services.AddControllersWithViews();
 /*"Service" refers to the components that are registered with the ASP.NET Core Dependency Injection (DI) container.
  * Services are objects that provide specific functionality and can be used throughout the application by other components.
  */
+
+builder.Services.AddDbContext<ItemDbContext>(options =>
+{
+    options.UseSqlite(
+        builder.Configuration["ConnectionStrings:ItemDbContextConnection"]);
+});
 
 var app = builder.Build();
 
