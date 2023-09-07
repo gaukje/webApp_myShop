@@ -1,0 +1,34 @@
+﻿@model Item
+
+<h2>Create New Item</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name"></label><span class="text-danger">*</span>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label><span class="text-danger">*</span>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Table" class="btn btn-secondary">Back to table view</a>
+</form>
+
+@*
+    Note: The asp-for attribute (e.g., Line7) is a tag helper in ASP.NET Core that helps with
+model binding and validation. It is used to associate a form input element with a specific
+property of the model class.
+*@

@@ -14,11 +14,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Item\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Item\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Item\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Item\Create.cshtml" />
   </ItemGroup>
 
 </Project>
