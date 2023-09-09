@@ -11,3 +11,4 @@ namespace MyShop.Models
         public string? ImageUrl { get; set; }
     }
 }
+
