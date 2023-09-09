@@ -1,13 +1,15 @@
-﻿using MyShop.Models;
+﻿using System;
+using System.Collections.Generic;
+using MyShop.Models;
 
 namespace MyShop.ViewModels
 {
     public class ItemListViewModel
     {
         public IEnumerable<Item> Items;
-        public String? CurrentViewName;
+        public string? CurrentViewName;
 
-        public ItemListViewModel(IEnumerable<Item> items, String? currentViewName)
+        public ItemListViewModel(IEnumerable<Item> items, string? currentViewName)
         {
             Items = items;
             CurrentViewName = currentViewName;

@@ -12,5 +12,3 @@ public class ItemDbContext : DbContext
 
     public DbSet<Item> Items { get; set; }
 }
-
-    
