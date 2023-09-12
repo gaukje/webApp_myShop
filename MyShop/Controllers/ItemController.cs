@@ -43,12 +43,12 @@ public class ItemController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(Item item)
+    public async Task<IActionResult> Create(Item item)
     {
         if (ModelState.IsValid)
         {
             _itemDbContext.Items.Add(item);
-            _itemDbContext.SaveChanges();
+            await _itemDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Table));
         }
         return View(item);
@@ -66,12 +66,12 @@ public class ItemController : Controller
     }
 
     [HttpPost]
-    public IActionResult Update(Item item)
+    public async Task<IActionResult> Update(Item item)
     {
         if (ModelState.IsValid)
         {
             _itemDbContext.Items.Update(item);
-            _itemDbContext.SaveChanges();
+            await _itemDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Table));
         }
         return View(item); 
@@ -89,15 +89,15 @@ public class ItemController : Controller
     }
 
     [HttpPost]
-    public IActionResult DeleteConfirmed(int id)
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var item = _itemDbContext.Items.Find(id);
+        var item = await _itemDbContext.Items.FindAsync(id);
         if (item == null)
         {
             return NotFound();
         }
         _itemDbContext.Items.Remove(item);
-        _itemDbContext.SaveChanges();
+        await _itemDbContext.SaveChangesAsync();
         return RedirectToAction(nameof(Table));
     }
 }
