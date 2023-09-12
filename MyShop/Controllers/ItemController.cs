@@ -55,9 +55,9 @@ public class ItemController : Controller
     }
 
     [HttpGet]
-    public IActionResult Update(int id)
+    public async Task<IActionResult> Update(int id)
     {
-        var item = _itemDbContext.Items.Find(id);
+        var item = await _itemDbContext.Items.FindAsync(id);
         if (item == null)
         {
             return NotFound();
@@ -78,9 +78,9 @@ public class ItemController : Controller
     }
 
     [HttpGet]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var item = _itemDbContext.Items.Find(id);
+        var item = await _itemDbContext.Items.FindAsync(id);
         if (item == null)
         {
             return NotFound();
