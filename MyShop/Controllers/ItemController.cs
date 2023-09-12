@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyShop.Models;
 using MyShop.ViewModels;
 
@@ -13,24 +14,23 @@ public class ItemController : Controller
         _itemDbContext = itemDbContext;
     }
 
-    public IActionResult Table()
+    public async Task<IActionResult> Table()
     {
-        List<Item> items = _itemDbContext.Items.ToList();
+        List<Item> items = await _itemDbContext.Items.ToListAsync();
         var itemListViewModel = new ItemListViewModel(items, "Table");
         return View(itemListViewModel);
     }
 
-    public IActionResult Grid()
+    public async Task<IActionResult> Grid()
     {
-        List<Item> items = _itemDbContext.Items.ToList();
+        List<Item> items = await _itemDbContext.Items.ToListAsync();
         var itemListViewModel = new ItemListViewModel(items, "Grid");
         return View(itemListViewModel);
     }
 
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
-        List<Item> items = _itemDbContext.Items.ToList();
-        var item = items.FirstOrDefault(i => i.ItemId == id);
+        var item = await _itemDbContext.Items.FirstOrDefaultAsync(i => i.ItemId == id);
         if (item == null)
             return NotFound();
         return View(item);
