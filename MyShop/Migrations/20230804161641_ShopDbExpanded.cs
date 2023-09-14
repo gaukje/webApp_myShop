@@ -10,6 +10,12 @@ namespace MyShop.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "CustomerId",
+                table: "Items",
+                type: "INTEGER",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
@@ -74,6 +80,11 @@ namespace MyShop.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_CustomerId",
+                table: "Items",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ItemId",
                 table: "OrderItems",
                 column: "ItemId");
@@ -87,11 +98,22 @@ namespace MyShop.Migrations
                 name: "IX_Orders_CustomerId",
                 table: "Orders",
                 column: "CustomerId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Items_Customers_CustomerId",
+                table: "Items",
+                column: "CustomerId",
+                principalTable: "Customers",
+                principalColumn: "CustomerId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Items_Customers_CustomerId",
+                table: "Items");
+
             migrationBuilder.DropTable(
                 name: "OrderItems");
 
@@ -100,6 +122,14 @@ namespace MyShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Items_CustomerId",
+                table: "Items");
+
+            migrationBuilder.DropColumn(
+                name: "CustomerId",
+                table: "Items");
         }
     }
 }

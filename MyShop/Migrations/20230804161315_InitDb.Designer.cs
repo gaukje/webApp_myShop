@@ -10,14 +10,14 @@ using MyShop.Models;
 namespace MyShop.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230912173602_InitDb")]
+    [Migration("20230804161315_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
 
             modelBuilder.Entity("MyShop.Models.Item", b =>
                 {
