@@ -20,7 +20,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="Views\Item\" />
     <Folder Include="Views\Home\" />
-    <Folder Include="Views\Customer\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\images\" />
