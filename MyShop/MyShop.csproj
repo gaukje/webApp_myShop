@@ -21,7 +21,6 @@
     <Folder Include="Views\Item\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
