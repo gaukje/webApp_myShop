@@ -20,7 +20,6 @@
     <Folder Include="Views\Item\" />
     <Folder Include="Views\Home\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\" />
