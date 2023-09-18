@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MyShop.DAL;
 using MyShop.Models;
 using MyShop.ViewModels;
@@ -8,7 +7,7 @@ namespace MyShop.Controllers;
 
 public class ItemController : Controller
 {
-    private readonly ItemRepository _itemRepository;
+    private readonly IItemRepository _itemRepository;
 
     public ItemController(IItemRepository itemRepository)
     {
