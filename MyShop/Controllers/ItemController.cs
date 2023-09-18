@@ -15,11 +15,6 @@ public class ItemController : Controller
         _itemDbContext = itemDbContext;
     }
 
-    public List<Order> OrderConsole()
-    {
-        return _itemDbContext.Orders.ToList();
-    }
-
     public async Task<IActionResult> Table()
     {
         List<Item> items = await _itemDbContext.Items.ToListAsync();
