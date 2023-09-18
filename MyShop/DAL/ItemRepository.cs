@@ -19,7 +19,7 @@ public class ItemRepository : IItemRepository
 
     public async Task<Item?> GetItemById(int id)
     {
-        return await _db.Items.FirstAsync(id);
+        return await _db.Items.FindAsync(id);
     }
 
     public async Task Create(Item item)
