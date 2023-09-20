@@ -16,6 +16,7 @@
     <None Remove="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Logs\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Item\" />
     <Folder Include="Views\Home\" />
