@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyShop.Models;
-using MyShop.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using MyShop.DAL;
 
 namespace MyShop.Controllers;
 
 public class CustomerController : Controller
 {
-    private readonly IItemRepository _itemRepository;
+    private readonly ItemDbContext _itemDbContext;
 
-    public CustomerController(IItemRepository itemRepository)
+    public CustomerController(ItemDbContext itemDbContext)
     {
-        _itemRepository = itemRepository;
+        _itemDbContext = itemDbContext;
     }
 
     public async Task<IActionResult> Table()
     {
-        var customer = await _itemRepository.GetAll(); 
+        List<Customer> customer = await _itemDbContext.Customers.ToListAsync();
         return View(customer);
     }
 }
