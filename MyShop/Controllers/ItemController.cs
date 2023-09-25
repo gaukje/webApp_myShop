@@ -91,7 +91,7 @@ public class ItemController : Controller
             if (returnOk)
                 return RedirectToAction(nameof(Table));
         }
-        _logger.LogWarning("[ItemController] Item update failed {@item}, item");
+        _logger.LogWarning("[ItemController] Item update failed {@item}", item);
         return View(item);
     }
 
