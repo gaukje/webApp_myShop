@@ -44,7 +44,10 @@ public class ItemController : Controller
     {
         var item = await _itemRepository.GetItemById(id);
         if (item == null)
-            return BadRequest("Item not found");
+        {
+            _logger.LogError("[ItemController] Item not found for the ItemId {ItemId:0000}", id);
+            return NotFound("Item not found for the ItemId");
+        }
         return View(item);
     }
 
@@ -59,9 +62,11 @@ public class ItemController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _itemRepository.Create(item);
-            return RedirectToAction(nameof(Table));
+            bool returnOk = await _itemRepository.Create(item);
+            if (returnOk)
+                return RedirectToAction(nameof(Table));
         }
+        _logger.LogWarning("[ItemController] Item creation failed {@item}", item);
         return View(item);
     }
 
@@ -71,7 +76,8 @@ public class ItemController : Controller
         var item = await _itemRepository.GetItemById(id);
         if (item == null)
         {
-            return NotFound();
+            _logger.LogError("[ItemController] Item not found when updating the ItemId {ItemId:0000}", id);
+            return BadRequest("Item not found for the ItemId");
         }
         return View(item);
     }
@@ -81,9 +87,11 @@ public class ItemController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _itemRepository.Update(item);
-            return RedirectToAction(nameof(Table));
+            bool returnOk = await _itemRepository.Update(item);
+            if (returnOk)
+                return RedirectToAction(nameof(Table));
         }
+        _logger.LogWarning("[ItemController] Item update failed {@item}, item");
         return View(item);
     }
 
@@ -93,7 +101,8 @@ public class ItemController : Controller
         var item = await _itemRepository.GetItemById(id);
         if (item == null)
         {
-            return NotFound();
+            _logger.LogError("[ItemController] Item not found for the ItemId {ItemId:0000}", id);
+            return BadRequest("Item not found for the ItemId");
         }
         return View(item);
     }
@@ -101,7 +110,12 @@ public class ItemController : Controller
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        await _itemRepository.Delete(id);
+        bool returnOk = await _itemRepository.Delete(id);
+        if (!returnOk)
+        {
+            _logger.LogError("[ItemController] Item deletion failed for the ItemId {ItemId:0000}", id);
+            return BadRequest("Item deletion failed");
+        }
         return RedirectToAction(nameof(Table));
     }
 }
