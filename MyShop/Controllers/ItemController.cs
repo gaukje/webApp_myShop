@@ -18,10 +18,12 @@ public class ItemController : Controller
 
     public async Task<IActionResult> Table()
     {
-        _logger.LogInformation("This is an information message.");
-        _logger.LogWarning("This is a warning message.");
-        _logger.LogError("This is an error message");
         var items = await _itemRepository.GetAll();
+        if (items == null)
+        {
+            _logger.LogError("[ItemController] Item list not found while executing _itemRepository.GetAll()");
+            return NotFound("Item list not found");
+        }
         var itemListViewModel = new ItemListViewModel(items, "Table");
         return View(itemListViewModel);
     }
@@ -29,6 +31,11 @@ public class ItemController : Controller
     public async Task<IActionResult> Grid()
     {
         var items = await _itemRepository.GetAll();
+        if (items == null)
+        {
+            _logger.LogError("[ItemController] Item list not found while executing _itemRepository.GetAll()");
+            return NotFound("Item list not found");
+        }
         var itemListViewModel = new ItemListViewModel(items, "Grid");
         return View(itemListViewModel);
     }
