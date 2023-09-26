@@ -60,6 +60,7 @@ public class ItemController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(Item item)
     {
+        
         if (ModelState.IsValid)
         {
             bool returnOk = await _itemRepository.Create(item);
