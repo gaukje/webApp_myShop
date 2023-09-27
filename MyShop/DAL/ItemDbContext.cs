@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyShop.Models;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace MyShop.DAL;
+namespace MyShop.Models;
 
-public class ItemDbContext : DbContext
+public class ItemDbContext : IdentityDbContext
 {
     public ItemDbContext(DbContextOptions<ItemDbContext> options) : base(options)
     {
