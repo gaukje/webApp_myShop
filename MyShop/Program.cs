@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MyShop.DAL;
 using MyShop.Models;
 using Serilog;
 using Serilog.Events;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ItemDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ItemDbContextConnection' not found.");
 
 builder.Services.AddControllersWithViews();
 
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<ItemDbContext>(options => {
     options.UseSqlite(
         builder.Configuration["ConnectionStrings:ItemDbContextConnection"]);
 });
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ItemDbContext>();
 
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
