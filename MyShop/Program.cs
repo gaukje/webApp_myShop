@@ -58,4 +58,6 @@ app.UseAuthentication();
 
 app.MapDefaultControllerRoute();
 
+app.MapRazorPages();
+
 app.Run();
